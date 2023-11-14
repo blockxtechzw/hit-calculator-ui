@@ -1,0 +1,85 @@
+<p-toast></p-toast>
+
+<div class="surface-section text-center px-4 py-8 md:px-6 lg:px-8">
+  <div class="bg-blue-50 text-blue-600 font-bold border-round px-2 py-1 mx-auto mb-3" style="max-width: 350px">
+      🔥&nbsp;HARARE INSTITUTE OF TECHNOLOGY BABY DETAILS</div>
+  <div class="text-2xl text-900 font-bold mb-3">HIT HOSPITAL</div>
+  <p class="text-600 line-height-3 mb-6">Roy Kanavheti & Hillary Mutimbanyoka</p>
+
+  <form [formGroup]="form">
+    <div class="grid formgrid p-fluid">
+      <div class="field mb-4 col-6 md:col-6">
+        <label for="motherFirstName" class="font-medium text-900">Mother Firstname</label>
+        <input pInputText id="motherFirstName" formControlName="motherFirstName" aria-describedby="motherFirstName" class="{{form.get('motherFirstName')?.invalid ? 'ng-invalid ng-dirty': ''}}"  >
+        <small *ngIf="isControlHasError('motherFirstName','required')" id="motherFirstName" class="p-error block">Mother Firstname is required!</small>
+        </div>
+        <div class="field mb-4 col-6 md:col-6">
+          <label for="motherLastName" class="font-medium text-900">Mother Lastname</label>
+          <input pInputText id="motherLastName" formControlName="motherLastName" aria-describedby="motherLastName" class="{{form.get('motherLastName')?.invalid ? 'ng-invalid ng-dirty': ''}}"  >
+          <small *ngIf="isControlHasError('motherLastName','required')" id="motherLastName" class="p-error block">Mother Lastname is required!</small>
+          </div>
+      <div class="field mb-4 col-6 md:col-6">
+        <label for="birthNumber" class="font-medium text-900">Baby Birth Number</label>
+        <input pInputText id="birthNumber" formControlName="birthNumber" aria-describedby="birthNumber" class="{{form.get('birthNumber')?.invalid ? 'ng-invalid ng-dirty': ''}}"  >
+        <small *ngIf="isControlHasError('birthNumber','required')" id="birthNumber" class="p-error block">Birth Number is required!</small>
+        </div>
+
+
+          <div class="field mb-4 col-6 md:col-6">
+            <label for="dateOfBirth" class="font-medium text-900">Date of Birth</label>
+            <p-calendar id="dateOfBirth" formControlName="dateOfBirth"  aria-describedby="dateOfBirth" class="{{form.get('dateOfBirth')?.invalid ? 'ng-invalid ng-dirty': ''}}"></p-calendar>
+
+            <small *ngIf="isControlHasError('dateOfBirth','required')" id="dateOfBirth" class="p-error block">Date of birth is required!</small>
+          </div>
+      </div>
+      <div class="flex mt-4 justify-content-center">
+        <button pButton pRipple label="SAVE" icon="pi pi-file" class="w-auto" (click)="checkErrorAndSubmit()"
+          [disabled]="loading || this.form.invalid"></button>
+      </div>
+    </form>
+
+    <p-table  [value]="items"   [paginator]="true" [rows]="10" [loading]="loading"  [resizableColumns]="true" [responsive]="true">
+      <ng-template pTemplate="header">
+          <tr>
+            <th>ID</th>
+            <th>BIRTHNUMBER</th>
+              <th> FIRSTNAME</th>
+              <th> LASTNAME</th>
+              <th>DATE OF BIRTH</th>
+          </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-item>
+          <tr>
+            <td>{{item?.id}}</td>
+            <td>{{item?.birthNumber}}</td>
+              <td>{{item?.motherFirstName}}</td>
+              <td>{{item?.motherLastName}}</td>
+              <td>{{item?.dateOfBirthString}}</td>
+
+          </tr>
+      </ng-template>
+    </p-table>
+
+    <h3>STATISTICS</h3>
+    <div class="grid  p-fluid">
+      <div class="col-6">
+        <h4>BABIES_BORN_PER_DAY</h4>
+        <h5>{{statistics?.babiesBornPerDay}}</h5>
+      </div>
+
+      <div class="col-6">
+        <h4>BABIES_BORN_PER_WEEK</h4>
+        <h5>{{statistics?.babiesBornPerWeek}}</h5>
+      </div>
+
+      <div class="col-6">
+        <h4>BABIES_BORN_PER_MONTH</h4>
+        <h5>{{statistics?.babiesBornPerMonth}}</h5>
+      </div>
+
+      <div class="col-6">
+        <h4>BABIES_BORN_PER_YEAR</h4>
+        <h5>{{statistics?.babiesBornPerYear}}</h5>
+      </div>
+    </div>
+  </div>

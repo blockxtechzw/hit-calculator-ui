@@ -15,11 +15,16 @@ import {InputNumberModule} from 'primeng/inputnumber';
 import { TableModule } from 'primeng/table';
 import { ToastModule } from 'primeng/toast';
 import { CardModule } from 'primeng/card';
+import { BabyInfoComponent } from './baby-info/baby-info.component';
+import { CalculatorComponent } from './calculator/calculator.component';
+import {CalendarModule} from 'primeng/calendar';
 
 @NgModule({
   declarations: [
-    AppComponent
-  ],
+    AppComponent,
+      BabyInfoComponent,
+      CalculatorComponent
+   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -33,11 +38,12 @@ import { CardModule } from 'primeng/card';
     ToastModule,
     TableModule,
     CardModule,
+    CalendarModule,
     InputTextModule
   ],
   providers: [ Global, ConfirmationService, MessageService,
 
-        // {provide: LocationStrategy, useClass: HashLocationStrategy},
+        {provide: LocationStrategy, useClass: HashLocationStrategy},
   ],
   bootstrap: [AppComponent]
 })
